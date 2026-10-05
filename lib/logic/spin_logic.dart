@@ -23,8 +23,12 @@ Skin rollSkin()
       chosen = entry.key;
       break;
     }
-  }
+  } 
 
   final pool = allSkins.where((s) => s.rarity == chosen).toList();
-  return pool[_random.nextInt(pool.length)];
+if (pool.isEmpty) {
+  // no skins for this rarity yet, so pick any skin
+  return allSkins[_random.nextInt(allSkins.length)];
+}
+return pool[_random.nextInt(pool.length)];
 }
